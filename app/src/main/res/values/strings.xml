@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">RainRippleView</string>
+    <string name="rain_drop_action">Draw rain drop</string>
+</resources>
