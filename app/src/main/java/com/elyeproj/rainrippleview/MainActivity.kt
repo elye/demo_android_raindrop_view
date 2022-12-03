@@ -1,10 +1,12 @@
-package com.elyeproj.rainrippleview
+package com.example.raindrop
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_main.rain_drop_view
+import com.example.raindrop.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var binding: ActivityMainBinding
 
     companion object {
         private const val RAINDROP_LIST_STATE = "RaindropListState"
@@ -12,19 +14,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_main)
 
         savedInstanceState?.let {
             it.getParcelableArrayList<RainDrop>(RAINDROP_LIST_STATE)?.let {
-                rain_drop_view.rainDropList = it
+                binding.rainDropView.rainDropList = it
             }
         }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        if (rain_drop_view.rainDropList.isNotEmpty()) {
-            outState.putParcelableArrayList(RAINDROP_LIST_STATE, rain_drop_view.rainDropList as ArrayList)
+        if (binding.rainDropView.rainDropList.isNotEmpty()) {
+            outState.putParcelableArrayList(RAINDROP_LIST_STATE, binding.rainDropView.rainDropList as ArrayList)
         }
     }
 }
